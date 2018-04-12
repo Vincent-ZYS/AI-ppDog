@@ -33,6 +33,7 @@ public class DogAI : AIPath {
         IdleState.AddTransition(Transition.Close, StateID.Sleep);
         IdleState.AddTransition(Transition.SeePlayer, StateID.Patrol);
         IdleState.AddTransition(Transition.Shopping, StateID.GoOut);
+        IdleState.AddTransition(Transition.StartPlay, StateID.Play);
 
         FSMState patrolState = new PatrolState(fsm);
         patrolState.AddTransition(Transition.Open, StateID.Idle);
@@ -53,6 +54,12 @@ public class DogAI : AIPath {
         FSMState comebackState = new ComeBackState(fsm);
         comebackState.AddTransition(Transition.Open, StateID.Idle);
 
+        FSMState playState = new PlayState(fsm);
+        playState.AddTransition(Transition.Open, StateID.Idle);
+        playState.AddTransition(Transition.Close, StateID.Sleep);
+        playState.AddTransition(Transition.SeePlayer, StateID.Patrol);
+        playState.AddTransition(Transition.Shopping, StateID.GoOut);
+
         fsm.AddState(sleepState);
         fsm.AddState(IdleState);
         fsm.AddState(patrolState);
@@ -60,6 +67,7 @@ public class DogAI : AIPath {
         fsm.AddState(barkState);
         fsm.AddState(comebackState);
         fsm.AddState(gooutState);
+        fsm.AddState(playState);
 
     }
     protected override void Update()

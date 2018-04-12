@@ -352,6 +352,12 @@ MonoBehaviour:
   - "\u770B\u5BB6"
   - "\u51FA\u95E8"
   - "\u770B\u4E0B\u5BB6"
+  - "\u73A9"
+  - "\u597D\u5427"
+  - "\u5C31\u8FD9\u6837\u5427"
+  - "\u4F11\u606F"
+  - "\u4F60\u771F"
+  - "\u8868\u6F14"
   petMessage: {fileID: 1823736957161808}
 --- !u!114 &114839983483748556
 MonoBehaviour:

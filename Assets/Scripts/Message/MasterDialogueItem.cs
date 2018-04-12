@@ -8,7 +8,7 @@ public class MasterDialogueItem : MonoBehaviour {
     public GameObject petMessage;
     //private Transform VerticalLayout;
     void Start()
-    { 
+    {
         message= transform.Find("message_text").gameObject.GetComponent<Text>();
         if (this.transform.Find("dog_bg").gameObject.activeInHierarchy ==false)
         {
@@ -70,8 +70,34 @@ public class MasterDialogueItem : MonoBehaviour {
             case "回来":
                StartCoroutine(Comeback());
                 break;
+            case "玩":
+            case "表演":
+                StartCoroutine(StartPlay());
+                break;
+            case "好吧":
+            case "就这样吧":
+            case "休息":
+            case "你真":
+                StartCoroutine(StopPlay());
+                break;
             default:StartCoroutine(DefaultAnswer());
                 break;             
+        }
+    }
+    IEnumerator StopPlay()
+    {
+        yield return new WaitForSeconds(1.0f);
+        InstantiatePetMessage("我可不可爱");
+    }
+    IEnumerator StartPlay()
+    {
+        yield return new WaitForSeconds(1.0f);
+        if (AnimationExcuting.instance.anim.GetCurrentAnimatorStateInfo(0).IsName("Sleep"))
+        {
+            InstantiatePetMessage("ZZZZZZZ");
+        }
+        else {
+            InstantiatePetMessage("好勒");
         }
     }
 	IEnumerator StartUp()
@@ -82,31 +108,57 @@ public class MasterDialogueItem : MonoBehaviour {
     IEnumerator DefaultAnswer()
     {
         yield return new WaitForSeconds(1.0f);
-        InstantiatePetMessage("我不知道你在说什么");
+        if (AnimationExcuting.instance.anim.GetCurrentAnimatorStateInfo(0).IsName("Sleep"))
+        {
+            InstantiatePetMessage("ZZZZZZZ");
+        }
+        else {
+            InstantiatePetMessage("我不知道你在说什么");
+        }
     }
     IEnumerator Trail()
     {
         yield return new WaitForSeconds(1.0f);
         //TODO 巡逻
-        InstantiatePetMessage("好的，我将保证没有一只苍蝇");
+        if (AnimationExcuting.instance.anim.GetCurrentAnimatorStateInfo(0).IsName("Sleep"))
+        {
+            InstantiatePetMessage("ZZZZZZZ");
+        }
+        else {
+            InstantiatePetMessage("好的，我将保证没有一只苍蝇");
+        }
     }
     IEnumerator Shopping()
     {
         yield return new WaitForSeconds(1.0f);
-        InstantiatePetMessage("好的你想购买点什么呢?");
-        yield return new WaitForSeconds(1.0f);
-        TransformState.instance.ShoppingState();
-        //TODO 购物
+        if (AnimationExcuting.instance.anim.GetCurrentAnimatorStateInfo(0).IsName("Sleep"))
+        {
+            InstantiatePetMessage("ZZZZZZZ");
+        }
+        else {
+            InstantiatePetMessage("好的你想购买点什么呢?");
+            yield return new WaitForSeconds(1.0f);
+            TransformState.instance.ShoppingState();
+            //TODO 购物
+        }
     }
     IEnumerator SwitchClosing()
     {
         yield return new WaitForSeconds(1.0f);
-        InstantiatePetMessage("拜拜");
+       
+            InstantiatePetMessage("拜拜");
+       
     }
     IEnumerator Comeback()
     {
         yield return new WaitForSeconds(1.0f);
-        InstantiatePetMessage("马上");
+        if (AnimationExcuting.instance.anim.GetCurrentAnimatorStateInfo(0).IsName("Sleep"))
+        {
+            InstantiatePetMessage("ZZZZZZZ");
+        }
+        else {
+            InstantiatePetMessage("马上");
+        }
     }
     void InstantiatePetMessage(string message)
     {

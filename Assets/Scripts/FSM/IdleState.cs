@@ -53,7 +53,11 @@ public class IdleState:FSMState {
             case "看下家":
                 EnviromentManager.instance.ChangeDepthField(false);
                 fsm.PerformTransition(Transition.SeePlayer);
-                break;            
+                break;
+            case "玩":
+            case "表演":
+                fsm.PerformTransition(Transition.StartPlay);
+                break;          
         }
         if (DogAI.instance.target == null) return;
         if (DogAI.instance.target.tag==Tags.shop)

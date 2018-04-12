@@ -6,7 +6,7 @@ public class FSMSystem  {
 
     private Dictionary<StateID, FSMState> states = new Dictionary<StateID, FSMState>();
 
-    private StateID currentStateID;
+    public StateID currentStateID;
     private FSMState currentState;
 
     public void Update(GameObject npc)

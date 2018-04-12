@@ -11,6 +11,7 @@ public enum Transition
     FindEnemy,
     Shopping,
     Back,
+    StartPlay
 }
 public enum StateID
 {
@@ -21,7 +22,8 @@ public enum StateID
     Chase,
     Bark,
     GoOut,
-    ComeBack
+    ComeBack,
+    Play
 }
 public abstract class FSMState{
     protected StateID stateID;
